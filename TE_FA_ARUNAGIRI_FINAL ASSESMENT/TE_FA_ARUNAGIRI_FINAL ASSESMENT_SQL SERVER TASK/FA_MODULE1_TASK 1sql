@@ -1,0 +1,114 @@
+CREATE TABLE HOSPITAL ------ Parent table
+(
+HOSPITAL_NAME VARCHAR(40),
+LOCATION VARCHAR(40),
+HOSPITAL_ID INT PRIMARY KEY
+)
+
+
+
+-- inserting values into hospital table
+insert into HOSPITAL values
+('Holy Cross Hospital','Hasan',30)
+---
+
+
+select * from HOSPITAL 
+
+
+--Child table 
+CREATE TABLE DEPARTMENT
+(
+DEPT_ID INT PRIMARY KEY,
+DEPT_NAME VARCHAR(40),
+DOCTOR_NAME VARCHAR(40),
+HOSPITAL_ID INT FOREIGN KEY(HOSPITAL_ID) REFERENCES HOSPITAL(HOSPITAL_ID)
+)
+
+
+--insertimg values into the department table
+insert into DEPARTMENT values (119,'Sugar','Sweekar',12)
+select * from   DEPARTMENT
+
+
+
+--creating a patient table
+CREATE TABLE  PATIENT 
+(   
+    PATIENT_ID INT PRIMARY KEY,
+    PATIENT_NAME VARCHAR(40),
+    AGE int,
+    GENDER VARCHAR(10),
+    PLACE VARCHAR(40),
+    PHONE_NUMBER VARCHAR(40),
+    APPT_REASON VARCHAR(40),
+    DEPT_ID INT FOREIGN KEY(DEPT_ID) REFERENCES DEPARTMENT(DEPT_ID)
+)
+
+
+
+--inserting values into PATIENT 
+insert into  PATIENT  values (21,'Ashwal',24,'Male','Bangalore','8876621365','EyeTest',107)
+select * from patient
+
+--creating a doctor table
+CREATE TABLE DOCTOR
+(
+DOCTOR_NAME VARCHAR(20),
+DOCTOR_ID INT,
+EXPEIRIENCE VARCHAR(20),
+DEPT_ID INT FOREIGN KEY(DEPT_ID) REFERENCES DEPARTMENT(DEPT_ID)
+)
+
+
+--inserting values into doctor
+insert into doctor values ('Sweekar',20,'10 year','119')
+
+
+select * from DOCTOR
+
+
+-----inner join operation-----Returns records that have matching values in both tables
+
+select
+doctor_name,
+patient_name,
+appt_reason
+from 
+DOCTOR inner join PATIENT on doctor.dept_id = patient.dept_id
+
+---LEFT JOIN OPERATION Returns all records from the left table, and the matched records from the right table
+select
+doctor_name,
+patient_name,
+appt_reason
+from 
+DOCTOR LEFT join PATIENT on doctor.dept_id = patient.dept_id
+---RIGHT JOIN  Returns all records from the right table, and the matched records from the
+select
+HOSPITAL_NAME,
+DEPT_ID,
+from 
+HOSPITAL  RIGHT join DEPARTMENT  on HOSPITAL.HOSPITAL_id = DEPARTMENT.HOSPITAL_id
+--FULL JOIN Returns all records when there is a match in either left or right table 
+select
+HOSPITAL_NAME,
+DEPT_ID,
+DEPT_NAME,
+LOCATION
+from 
+HOSPITAL  FULL join DEPARTMENT  on HOSPITAL.HOSPITAL_id = DEPARTMENT.HOSPITAL_id
+
+--- Joining the doctor table,patient table and department table using inner join
+SELECT * FROM DOCTOR 
+INNER JOIN PATIENT  ON doctor.dept_id  = patient.dept_id
+INNER JOIN DEPARTMENT ON doctor.doctor_name = department.doctor_name
+-----self join through this we can get know which doctor is treating the patient
+SELECT doctor.doctor_name AS doctor_name , patient.patient_id AS patient_id
+FROM doctor,PATIENT 
+WHERE patient_id <> 50
+AND doctor_id = patient_id
+ORDER BY patient_id;
+
+
+
