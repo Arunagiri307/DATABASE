@@ -1,10 +1,13 @@
 Database stream
 
 A database is an organized collection of structured information, or data, typically stored electronically in a computer system. A database is usually controlled by a database management system (DBMS).
+ 
  SQL is the query language specific to the Microsoft SQL Server product. It can help perform operations like retrieving the data from a single row, inserting new rows, and retrieving multiple rows. It is a procedural language that is used by the SQL Server.
+ 
 SQL Server Integration Services
 
 SQL Server Integration Services is a platform for building enterprise-level data integration and data transformations solutions. Use Integration Services to solve complex business problems by copying or downloading files, loading data warehouses, cleansing and mining data, and managing SQL Server objects and data.
+
 SQL Server Reporting Services (SSRS)
 SQL Server Reporting Services (SSRS) provides a set of on-premises tools and services that create, deploy, and manage paginated reports. 
 
